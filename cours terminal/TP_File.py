@@ -20,3 +20,13 @@ class File:
     def taille (self):
         return len(self.file)
     
+    def ajout_element(self):
+        if self.taille()>=7:
+            return "sorry"
+        else:
+            self.enfile(elem)
+            
+    def vide_file(self):
+        for i in self.file:
+            self.defile(i)
+    
