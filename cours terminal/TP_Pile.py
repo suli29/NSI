@@ -96,8 +96,26 @@ def calculatrice(calcul):
         else :
             pass
     return pile.depile()
-    
-        
+  
+def tri_pile(pile):
+    pile_trie = Pile()
+    pile_tmp = Pile()
+    #s = pile.depile()
+    #pile_trie.empile(s)
+    pile_trie.empile(pile.depile())
+    while pile.est_vide() == False :
+        if pile.top() > pile_trie.top() :
+            while pile_trie.est_vide() == False and pile.top() > pile_trie.top() :
+                pile_tmp.empile(pile_trie.depile())
+            pile_trie.empile(pile.depile())
+            while pile.tmp.est_vide() != False :
+                pile_trie.empile(pile_tmp.depile())
+        else :
+            pile_trie.empile(pile.depile())
+    while pile_trie.est_vide() == False :
+        pile_tmp.empile(pile_trie.depile())
+    while pile_tmp.est_vide() == False :
+        pile.empile(pile_tmp.depile())
         
         
         
