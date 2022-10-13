@@ -61,3 +61,13 @@ def calculatrice(calcul):
         else :
             pass
     return pile.depile()
+
+    def __repr__(self):
+        long = len(self.pile)-1
+        s = ''
+        while long >= 0:
+            s += str(self.pile[long])+'\n'
+            long= long-1
+        return s
+
+    
