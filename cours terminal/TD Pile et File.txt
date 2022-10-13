@@ -1,0 +1,39 @@
+                                                    TD Pile et File
+            1 Application de cours
+1. 1. Pile
+
+1)Quel sera l'état de la pile après l'utilisation des méthodes suivantes : pile de base : 0.7.2.1.9.8
+    Depile() : 7.2.1.9.8
+    Depile() : 2.1.9.8
+    Empile(7) : 7.2.1.9.8
+    Empile(8) : 8.7.2.1.9.8
+    Depile() : 7.2.1.9.8
+                                    Pile apres la methode : 7.2.1.9.8
+
+    Que renvoie la méthode top() ?
+    La methode top() renvoie l'element au dessus de la pile
+
+2)Reprenons la pile de l'image, que faut t'il faire comme méthode pour que Est_vide() soit vrai ?
+    Pour que Est_vide() soit vrai il suffit de repeter 6x Depile()
+
+3)En partant de 0 écrire les méthodes permettant de créer une pile contenant les numéros dans cette ordre 1.9.9.8.2.0.1.8. (1 est en bas de pile)
+    Depile()      Empile(1)      Empile(9)      Empile(9)      Empile(8)      Empile(2)      Empile(0)      Empile(1)      Empile(8)
+
+1. 2. File
+
+1)Quel sera l'état de la file après l'utilisation des méthodes suivantes : File de base : 0.7.2.1.9.8
+    Defile() : 0.7.2.1.9
+    Defile() : 0.7.2.1
+    Enfile(7) : 7.0.7.2.1
+    Enfile(8) : 8.7.0.7.2.1
+    Defile() : 8.7.0.7.2
+                                    File apres la methode : 8.7.0.7.2
+    
+    Que renvoie la méthode top() ?
+    La methode top() renvoie l'element au dessus de la file
+
+2)Reprenons la file de l'image, que faut t'il faire comme méthode pour que Est_vide() soit vrai ?
+    Pour que Est_vide() soit vrai il suffit de repeter 6x Depile()
+
+#3)En partant de 0 écrire les méthodes permettant de créer une file contenant les numéros dans cette ordre 19982018. (1 est en haut de pile)
+    #Depile()      Empile(9)      Empile(1)      Empile(0)      Empile(2)      Empile(8)      Empile(9)      Empile(9)      Empile(1)
