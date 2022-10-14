@@ -30,3 +30,21 @@ class File:
         for i in self.file:
             self.defile(i)
     
+class File_2:
+    
+    def __init__(self,elem,suite) :
+        self.element = elem
+        self.queue = suite
+
+    def enfile(self,elem):
+        self.queue = File(self.elem,self.suivant)
+        self.elem = elem 
+        
+    def est_vide(self):
+        if self.element == None:
+            if self.queue != None :
+        return True and self.queue.est_vide():
+            else:
+                return True
+        else:
+            return False
