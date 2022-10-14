@@ -51,6 +51,8 @@ class File2:
             val = self.elem
             self.elem = None
             return val
+        else:
+            self.suivant.defile()
             
         
     def est_vide(self):
