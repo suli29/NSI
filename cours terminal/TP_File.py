@@ -30,21 +30,38 @@ class File:
         for i in self.file:
             self.defile(i)
     
-class File_2:
+class File2:
     
-    def __init__(self,elem,suite) :
+    def __init__(self,elem, suite):
         self.element = elem
-        self.queue = suite
-
+        self.suivant = suite
+    
     def enfile(self,elem):
-        self.queue = File(self.elem,self.suivant)
-        self.elem = elem 
+        self.suivant = File2(self.elem, self.suivant)
+        self.element = elem        
+        
+    def defile(self):
+        if self.est_vide():
+            return False
+        if self.suivant.suivant == None:
+            val = self.suivant.elem
+            self.suivant = None
+            return val
+            
         
     def est_vide(self):
-        if self.element == None:
-            if self.queue != None :
-        return True and self.queue.est_vide():
+        if self.nombre == None:
+            if self.suivant != None:
+                return True and self.suivant.est_vide()
             else:
                 return True
         else:
             return False
+    
+    def top(self):
+        return self.file[-1]
+    
+    def taille (self):
+        return len(self.file)
+    
+    
