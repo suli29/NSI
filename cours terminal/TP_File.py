@@ -40,12 +40,16 @@ class File2:
         self.suivant = File2(self.elem, self.suivant)
         self.element = elem        
         
-    def defile(self):
+      def defile(self):
         if self.est_vide():
             return False
-        if self.suivant.suivant == None:
+        elif self.suivant.suivant == None:
             val = self.suivant.elem
             self.suivant = None
+            return val
+        elif self.suivant == None:
+            val = self.elem
+            self.elem = None
             return val
             
         
