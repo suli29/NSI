@@ -42,15 +42,3 @@ class plateau:
         """
         self.grillecase=[list(t)for t in zip(*self.grillecase)]
         
-    def compressergrille(self):
-        self.compresse=False
-        temp=[[0] *4 for i in range(4)]
-        for i in range(4):
-            cnt=0
-            for j in range(4):
-                if self.grillecase[i][j]!=0:
-                    temp[i][cnt]=self.grillecase[i][j]
-                    if cnt!=j:
-                        self.compresse=True
-                    cnt+=1
-        self.grillecase=
