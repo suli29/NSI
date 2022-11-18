@@ -21,7 +21,7 @@ class plateau:
                     self.plateau.append(lignes)
                     self.zonejeu.grille()
 
-    def reverse(self):
+    def inverse(self):
         """
         Fonction qui permet d'inverser les cases de ligne en ligne et de colonne en colonne
         param i:(int) est la ligne qui est definie a 0
@@ -35,7 +35,7 @@ class plateau:
                 i+=1
                 j-=1
 
-    def transpose(self):
+    def transposer(self):
         """
         Fonction qui permet de transposer la case a une autre case
         """
