@@ -56,3 +56,21 @@ class plateau:
                     self.grillecase[i][j + 1] = 0
                     self.score += self.grillecase[i][j]
                     self.fusion = True
+                    
+     def additioncase(self):
+        """
+        Fonction qui additionne deux memes cases en une case plus grande
+        param temps:(int) tableau 
+        param a:(int) variable defini a 0
+        """
+        self.addition=False
+        tab=[[0] *4 for i in range(4)]
+        for i in range(4):
+            a=0
+            for j in range(4):
+                if self.grillecase[i][j]!=0:
+                    tab[i][a]=self.grillecase[i][j]
+                    if a!=j:
+                        self.addition=True
+                    a+=1
+        self.grillecase=tab
