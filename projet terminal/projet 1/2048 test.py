@@ -12,15 +12,14 @@ class plateau:
         self.zonejeu = Frame(self.fenetre)
         
         for i in range(4):
-            lignes=[]
-            for j in range(4):
-                l=Label(self.zonejeu,text='',bg='white',
-                police=('arial',22,'bold'),width=4,height=2)
-                l.grille(ligne=i,colonne=j,padx=7,pady=7)
-
-                rows.append(l);
-            self.plateau.append(lignes)
-        self.zonejeu.grille()
+                    lignes=[]
+                    for j in range(4):
+                        l=Label(self.zonejeu,text='',bg='white',
+                        police=('arial',22,'bold'),width=4,height=2)
+                        l.grille(ligne=i,colonne=j,padx=7,pady=7)
+                        lignes.append(l);
+                    self.plateau.append(lignes)
+                    self.zonejeu.grille()
 
     def reverse(self):
         """
