@@ -56,7 +56,7 @@ class plateau:
                     self.score += self.case[i][j]
                     self.fusion = True
                     
-     def additioncase(self):
+    def additioncase(self):
         """
         Fonction qui additionne deux memes cases en une case plus grande
         param temps:(int) tableau 
