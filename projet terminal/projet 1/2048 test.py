@@ -31,7 +31,7 @@ class plateau:
             i=0
             j=3
             while(i<j):
-                self.grillecase[ind][i],self.grillecase[ind][j]=self.grillecase[ind][j],self.grillecase[ind][i]
+                self.case[ind][i],self.case[ind][j]=self.case[ind][j],self.case[ind][i]
                 i+=1
                 j-=1
 
@@ -39,7 +39,7 @@ class plateau:
         """
         Fonction qui permet de transposer la case a une autre case
         """
-        self.grillecase=[list(t)for t in zip(*self.grillecase)]
+        self.case=[list(t)for t in zip(*self.case)]
 
 
     def fusioncase(self):
@@ -50,10 +50,10 @@ class plateau:
         self.fusion=False
         for i in range(4):
             for j in range(4 - 1):
-                if self.grillecase[i][j] == self.grillecase[i][j + 1] and self.grillecase[i][j] != 0:
-                    self.grillecase[i][j] *= 2
-                    self.grillecase[i][j + 1] = 0
-                    self.score += self.grillecase[i][j]
+                if self.case[i][j] == self.case[i][j + 1] and self.case[i][j] != 0:
+                    self.case[i][j] *= 2
+                    self.case[i][j + 1] = 0
+                    self.score += self.case[i][j]
                     self.fusion = True
                     
      def additioncase(self):
@@ -67,10 +67,10 @@ class plateau:
         for i in range(4):
             a=0
             for j in range(4):
-                if self.grillecase[i][j]!=0:
-                    tab[i][a]=self.grillecase[i][j]
+                if self.case[i][j]!=0:
+                    tab[i][a]=self.case[i][j]
                     if a!=j:
                         self.addition=True
                     a+=1
-        self.grillecase=tab
+        self.case=tab
 
