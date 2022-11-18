@@ -73,3 +73,4 @@ class plateau:
                         self.addition=True
                     a+=1
         self.grillecase=tab
+
