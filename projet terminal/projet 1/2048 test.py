@@ -53,4 +53,4 @@ class plateau:
                     if cnt!=j:
                         self.compresse=True
                     cnt+=1
-        self.gridCell=
+        self.grillecase=
