@@ -1,29 +1,41 @@
 from tkinter import *
-import random 
+import random
+import tkinter as tk
 
-class plateau:
+#creation class plateau
+class Plateau:
+    
+    #cree une fenetre 
+    fen = tk.Tk()
+
+    #fond noir du 2048
+    canvas = Canvas(fen, width=600, height=600, background='black')
+    #permet d'afficher le canvas
+    canvas.pack()
+
+
     
     def __init__(self):
-        self.fenetre = Tk()
-        self.fenetre.title = ('2048 test')
+        self.fen.title = ('2048 test')
         self.plateau = []
         self.grille = [[0]*4 for i in range(4)]
         self.score = 0
-        self.zonejeu = Frame(self.fenetre)
+        self.zonejeu = Frame(self.fen)
         
-        for i in range(4):
-                    lignes=[]
+        for y in range(4):
+                    t=[]
+                    
                     for j in range(4):
-                        l=Label(self.zonejeu,text='',bg='white',
-                        police=('arial',22,'bold'),width=4,height=2)
-                        l.grille(ligne=i,colonne=j,padx=7,pady=7)
-                        lignes.append(l);
-                    self.plateau.append(lignes)
+                        l=Label(self.zonejeu,text='',bg='white',font=('arial',22,'bold'),width=4,height=2)
+                        self.grille(y[i][j],padx=7,pady=7)
+                        
+                        t.append(l);
+                    self.plateau.append(t)
                     self.zonejeu.grille()
 
-    def inverser(self):
+    def echange(self):
         """
-        Fonction qui permet d'inverser les cases de ligne en ligne et de colonne en colonne
+        Fonction qui permet d'echanger une case avec une autre
         param i:(int) est la ligne qui est definie a 0
         param j:(int) est la colonne qui est definie a 3
         """
@@ -35,42 +47,39 @@ class plateau:
                 i+=1
                 j-=1
 
-    def transposer(self):
-        """
-        Fonction qui permet de transposer la case a une autre case
-        """
-        self.case=[list(t)for t in zip(*self.case)]
-
 
     def fusioncase(self):
         """
-        fonction qui permet de fusioner deux cases en une seule
+        fonction qui permet de fusionner deux cases en une seule
         
         """
         self.fusion=False
         for i in range(4):
-            for j in range(4 - 1):
+            for j in range(3):
                 if self.case[i][j] == self.case[i][j + 1] and self.case[i][j] != 0:
                     self.case[i][j] *= 2
                     self.case[i][j + 1] = 0
                     self.score += self.case[i][j]
                     self.fusion = True
                     
-    def additioncase(self):
+                    
+                    
+    def identique(self,pos1,pos2):
         """
-        Fonction qui additionne deux memes cases en une case plus grande
-        param temps:(int) tableau 
-        param a:(int) variable defini a 0
+        Fonction permettant de verifier si les deux cases sont identiques
         """
-        self.addition=False
-        tab=[[0] *4 for i in range(4)]
-        for i in range(4):
-            a=0
-            for j in range(4):
-                if self.case[i][j]!=0:
-                    tab[i][a]=self.case[i][j]
-                    if a!=j:
-                        self.addition=True
-                    a+=1
-        self.case=tab
+     
+        
+        if self.grille[pos1] == self.grille[pos2]:
+            self.additioncase == True
+        else:
+            self.additioncase == False
 
+p = Plateau()
+p.echange()
+
+
+    
+"""
+fen.mainloop()
+"""
