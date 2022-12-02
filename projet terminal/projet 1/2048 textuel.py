@@ -44,6 +44,18 @@ def fusionligne1(ligne):
     return ligne
 
 
+def fusion_g(cb):
+    for i in range (taille_plateau):
+        cb[i] - fusionligne1(cb[i])    
+    return cb
+
+def reverse(ligne):
+    new = []
+    for i in range (taille_plateau -1,-1,-1):
+        new.append(ligne[i])
+    return new
+
+
 def fusionhaut(cb):
     """
     Fonction qui permet de fusionner vers le haut
