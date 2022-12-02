@@ -23,6 +23,22 @@ def affichage():
     print()
 
 
+def fusionligne1(ligne):
+    for j in range(taille_plateau -1):
+        for i in range(taille_plateau -1, 0, -1):
+            if ligne[i -1] == 0:
+                ligne[i-1] = ligne[i]
+                ligne[i] = 0
+    for i in range(taille_plateau -1):
+        if ligne[i] == ligne[i+1]:
+            ligne[i] *= 2
+            ligne[i+1] = 0
+            
+    for i in range(taille_plateau -1, 0, -1):
+        if ligne[i-1] == 0:
+            ligne[i-1] == ligne[i]
+            ligne[i] == 0
+    return ligne
 
 
 
