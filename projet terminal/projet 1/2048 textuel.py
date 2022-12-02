@@ -51,7 +51,6 @@ def reverse(ligne):
     for i in range (taille_plateau -1,-1,-1):
         new.append(ligne[i])
     return new
-              
         
 def fusion_d(cb):
     for i in range (taille_plateau):
@@ -60,6 +59,20 @@ def fusion_d(cb):
         cb[i] = reverse(cb[i])
     return cb
     
+def transpose(cb):
+    """
+    Fonction qui permet transposer i vers j ou inversement
+    param j :(int) ordonnee soit la colonne
+    param i :(int) abscisse soit la ligne
+    return : retourne la variable cb
+    """
+    for j in range(taille_plateau):
+        for i in range(j, taille_plateau):
+            if not i == j:
+                temp = cb[j][i]
+                cb[j][i] = cb[i][j]
+                cb[i][j] = temp
+    return cb
     
 def fusionhaut(cb):
     """
