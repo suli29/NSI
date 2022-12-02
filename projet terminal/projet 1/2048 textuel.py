@@ -1,7 +1,10 @@
 plateau = [[2,0,4,0],[0,16,0,4],[0,8,0,32],[0,2,0,0]]
 
 def affichage():
+    """
+    Fonction qui permet d'afficher le plateau de jeu
     
+    """    
     larg = plateau[0][0]
     for ligne in plateau:
         for element in ligne:
