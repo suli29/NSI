@@ -1,6 +1,7 @@
-plateau = [[2,0,4,0],[0,16,0,4],[0,8,0,32],[0,2,0,0]]
+import random #importation du module random afin de pouvoir afficher aleatoirement
+import copy #importation du module cpoy afin de pouvoir creer des liens
 
-taille_plateau = 4
+taille_plateau = 4 #permet de changer la taille du plateau
 
 def affichage():
     """
@@ -124,14 +125,113 @@ def fusionbas(cb):
     cb = transpose(cb) #permet de transposer
     
     return cb
-    
-            
-            
-            
 
-fusion_g(plateau)
-fusionhaut(plateau)
-fusion_d(plateau)
-fusionhaut(plateau)
-fusion_g(plateau)
+def nouvellevaleur():
+    """
+    Fonction qui permet d'ajouter une nouvelle valeur aleatoirement dans le plateau
+    
+    """
+    if random.randint(1, 8) ==  1:
+        return 4
+    else:
+        return 2
+    
+def ajout_nouvelle_valeur():
+    """
+    Fonction qui nous permet d'ajouter une valeur dans le plateau afin que lorsqu'on deplace le jeu une valeur apparaisse aleatoirement
+    """
+    ligneNum = random.randint(0, taille_plateau -1)
+    colonneNum = random.randint(0, taille_plateau -1)
+    
+    while not plateau[ligneNum][colonneNum] == 0:
+        ligneNum = random.randint(0, taille_plateau -1)
+        colonneNum = random.randint(0, taille_plateau -1)
+        
+    plateau[ligneNum][colonneNum] = nouvellevaleur()
+
+def gagne():
+    """
+    Fonction qui permet de stopper le jeu lorsqu on atteint 2048
+    """
+    for ligne in plateau:
+        if 2048 in ligne:
+            return True
+    return False
+
+def plus_mouvements():
+    """
+    Fonction qui permet de stopper le jeu lorsque l'on a rempli le plateau et que l'on ne peut plus faire de deplacement
+    """
+    temp_plateau1 = copy.deepcopy(plateau)
+    temp_plateau2 = copy.deepcopy(plateau)
+    
+    temp_plateau1 = fusionbas(temp_plateau1)
+    if temp_plateau1 == temp_plateau2:
+        temp_plateau1 = fusionhaut(temp_plateau1)
+        if temp_plateau1 == temp_plateau2:
+            temp_plateau1 = fusion_g(temp_plateau1)
+            if temp_plateau1 == temp_plateau2:
+                temp_plateau1 = fusion_d(temp_plateau1)
+                if temp_plateau1 == temp_plateau2:
+                    return True
+    return False
+    
+    
+    
+    
+plateau = []
+for i in range(taille_plateau):
+    ligne = []
+    for j in range(taille_plateau):
+        ligne.append(0)
+    plateau.append(ligne)
+
+numRequis = 2
+while numRequis > 0:
+    ligneNum = random.randint(0, taille_plateau -1)
+    colonneNum = random.randint(0, taille_plateau -1)
+    
+    if plateau[ligneNum][colonneNum] == 0:
+        plateau[ligneNum][colonneNum] = nouvellevaleur()
+        numRequis -= 1
+        
+fin_du_jeu = False
+
+while not fin_du_jeu:
+    deplacement = input("Dans quel sens voulez-vous fusionner ?")
+    
+    validInput = True
+    
+    temp_plateau = copy.deepcopy(plateau)
+    
+    if deplacement == "d":
+        plateau = fusion_d(plateau)
+    elif deplacement == "z":
+        plateau = fusionhaut(plateau)
+    elif deplacement == "q":
+        plateau = fusion_g(plateau)
+    elif deplacement == "s":
+        plateau = fusionbas(plateau)
+    else:
+        validInput = False
+    
+    if not validInput:
+        print("Veuillez reessayer l'entrée n'est pas valide")
+    else:
+        if plateau == temp_plateau:
+            print("Essayez une direction differente !")
+        else:
+            if gagne():
+                affichage()
+                print("Vous avez gagné")
+                fin_du_jeu = True
+            else:
+                ajout_nouvelle_valeur()
+                            
+                affichage()
+                
+                if plus_mouvements():
+                    print("Plus de mouvement possible, vous avez perdu !")
+                    fin_du_jeu = True
+
 affichage()
