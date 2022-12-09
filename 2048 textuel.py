@@ -201,7 +201,7 @@ fin_du_jeu = False
 affichage()
 
 while not fin_du_jeu:
-    deplacement = input("ou voulez vous allez :  ")
+    deplacement = input("Où voulez-vous allez :  ")
     
     validInput = True
     
@@ -219,7 +219,7 @@ while not fin_du_jeu:
         validInput = False
     
     if not validInput:
-        print("Veuillez reessayer l'entrée n'est pas valide")
+        print("Entrée NON-Valide")
     else:
         if plateau == temp_plateau:
             print(affichage())
@@ -234,7 +234,7 @@ while not fin_du_jeu:
                 affichage()
                 
                 if plus_mouvements():
-                    print("Plus de mouvement possible, vous avez perdu !")
+                    print("Plus de fusion possible, vous avez PERDU !")
                     fin_du_jeu = True
 
 affichage()
