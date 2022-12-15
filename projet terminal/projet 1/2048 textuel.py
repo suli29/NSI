@@ -1,7 +1,9 @@
-import random #importation du module random afin de pouvoir afficher aleatoirement
-import copy #importation du module cpoy afin de pouvoir creer des liens
+import random # importation du module random afin de pouvoir afficher aleatoirement
+import copy # importation du module copy afin de pouvoir creer des liens
 
-taille_plateau = 4 #permet de changer la taille du plateau
+taille_plateau = 4 # permet de changer la taille du plateau
+print(" Les touches du jeux sont [z] pour haut, [s] pour bas, [q] pour gauche et [d] pour droite . ")
+print("        ")
 
 def affichage():
     """
@@ -31,11 +33,10 @@ def affichage():
         print(c)
     print()
 
-def fusionligne1(ligne):
+def fusionligne(ligne):
     """
     Fonction qui permet de fusionner la ligne
-    param j :(int) ordonnee soit la colonne
-    param i :(int) abscisse soit la ligne
+    param ligne : ligne du plateau 
     return : retourne la ligne
     """
     for j in range(taille_plateau -1):
@@ -58,12 +59,11 @@ def fusionligne1(ligne):
 def fusion_g(cb):
     """
     Fonction qui permet de fusionner vers la gauche
-    param i : abscisse soit la ligne
     param cb : variable qui signifie le plateau actuel
     return : retourne la variable cb
     """
     for i in range (taille_plateau):
-        cb[i] = fusionligne1(cb[i])    
+        cb[i] = fusionligne(cb[i])    
     return cb
 
 def reverse(ligne):
@@ -75,13 +75,12 @@ def reverse(ligne):
 def fusion_d(cb):
     """
     Fonction qui permet de fusionner vers la droite
-    param i : abscisse soit la ligne
     param cb : variable qui signifie le plateau actuel
     return : retourne la variable cb
     """
     for i in range (taille_plateau):
         cb[i] = reverse(cb[i])
-        cb[i] = fusionligne1(cb[i])
+        cb[i] = fusionligne(cb[i])
         cb[i] = reverse(cb[i])
     return cb
             
@@ -90,8 +89,7 @@ def fusion_d(cb):
 def transpose(cb):
     """
     Fonction qui permet transposer i vers j ou inversement
-    param j :(int) ordonnee soit la colonne
-    param i :(int) abscisse soit la ligne
+    param cb : variable qui signifie le plateau actuel
     return : retourne la variable cb
     """
     for j in range(taille_plateau):
@@ -105,30 +103,30 @@ def transpose(cb):
 def fusionhaut(cb):
     """
     Fonction qui permet de fusionner vers le haut
-    param cb : variable
+    param cb : variable plateau actuel
     return : retourne la variable
     """
-    cb = transpose(cb)  #permet de transposer
-    cb = fusion_g(cb)   #permet de fusionner a gauche
-    cb = transpose(cb) #permet de transposer
+    cb = transpose(cb)  # permet de transposer
+    cb = fusion_g(cb)   # permet de fusionner a gauche
+    cb = transpose(cb) # permet de transposer
     
     return cb
 
 def fusionbas(cb):
     """
     Fonction qui permet de fusionner vers le haut
-    param cb : variable
+    param cb : variable plateau actuel
     return : retourne la variable
     """
-    cb = transpose(cb)  #permet de transposer
-    cb = fusion_d(cb)   #permet de fusionner a droite
-    cb = transpose(cb) #permet de transposer
+    cb = transpose(cb)  # permet de transposer
+    cb = fusion_d(cb)   # permet de fusionner a droite
+    cb = transpose(cb) # permet de transposer
     
     return cb
 
 def nouvellevaleur():
     """
-    Fonction qui permet d'ajouter une nouvelle valeur aleatoirement dans le plateau
+    Fonction qui permet d ajouter une nouvelle valeur aleatoirement dans le plateau
     
     """
     if random.randint(1, 8) ==  1:
@@ -151,19 +149,19 @@ def ajout_nouvelle_valeur():
 
 def gagne():
     """
-    Fonction qui permet de stopper le jeu lorsqu on atteint 2048
+    Fonction qui permet de stopper le jeu lorsqu on atteint 2048 dans une case
     """
     for ligne in plateau:
         if 2048 in ligne:
             return True
     return False
 
-def plus_mouvements():
+def plus_fusions_possible():
     """
-    Fonction qui permet de stopper le jeu lorsque l'on a rempli le plateau et que l'on ne peut plus faire de deplacement
+    Fonction qui permet de stopper le jeu lorsque lon a rempli le plateau et que lon ne peut plus faire de deplacement
     """
-    temp_plateau1 = copy.deepcopy(plateau)
-    temp_plateau2 = copy.deepcopy(plateau)
+    temp_plateau1 = copy.deepcopy(plateau) #copy et garde en memoire plateau dans un dictionnaire
+    temp_plateau2 = copy.deepcopy(plateau) #copy et garde en memoire plateau dans un dictionnaire
     
     temp_plateau1 = fusionbas(temp_plateau1)
     if temp_plateau1 == temp_plateau2:
@@ -173,22 +171,21 @@ def plus_mouvements():
             if temp_plateau1 == temp_plateau2:
                 temp_plateau1 = fusion_d(temp_plateau1)
                 if temp_plateau1 == temp_plateau2:
-                    return True
-    return False
+                    return True  #retourne True si le plateau temporaire 1 est egale au plateau temporaire 2
+    return False  #retourne False si le plateau temporaire 1 est egale a la fusion haut du plateau temporaire 1    
     
     
     
-    
-plateau = []
-for i in range(taille_plateau):
-    ligne = []
-    for j in range(taille_plateau):
-        ligne.append(0)
-    plateau.append(ligne)
+plateau = []   #creation d'une liste vide
+for i in range(taille_plateau): #pour i dans la taille du plateau
+    ligne = [] #ligne vaut liste vide
+    for j in range(taille_plateau): #pour j dans la taille du plateau
+        ligne.append(0) #ajoute 0 dans la liste vide
+    plateau.append(ligne) #ajoute la ligne dans le plateau
 
-numRequis = 2
+numRequis = 2 
 while numRequis > 0:
-    ligneNum = random.randint(0, taille_plateau -1)
+    ligneNum = random.randint(0, taille_plateau -1) 
     colonneNum = random.randint(0, taille_plateau -1)
     
     if plateau[ligneNum][colonneNum] == 0:
@@ -197,41 +194,44 @@ while numRequis > 0:
         
 fin_du_jeu = False
 
-while not fin_du_jeu:
-    deplacement = input("Dans quel sens voulez-vous fusionner ?")
+affichage()
+
+while not fin_du_jeu: 
+    deplacement = input("Où voulez-vous allez :  ") #demande quel deplacement le joueur veut faire
     
-    validInput = True
+    validInput = True  #valide input si la touche correspond aux bonnes touches
     
-    temp_plateau = copy.deepcopy(plateau)
+    temp_plateau = copy.deepcopy(plateau) #permet de garder en memoire plateau dans un dictionnaire
     
-    if deplacement == "d":
-        plateau = fusion_d(plateau)
-    elif deplacement == "z":
-        plateau = fusionhaut(plateau)
-    elif deplacement == "q":
-        plateau = fusion_g(plateau)
-    elif deplacement == "s":
-        plateau = fusionbas(plateau)
+    if deplacement == "d" or deplacement == "D":  #assigne la touche D ou d
+        plateau = fusion_d(plateau) #appel la fonction fusion_d pour deplacer les lignes vers la droite
+    elif deplacement == "z" or deplacement == "Z":   #assigne la touche Z ou z
+        plateau = fusionhaut(plateau) #appel la fonction fusionhaut pour deplacer les lignes vers le haut
+    elif deplacement == "q" or deplacement == "Q":   #assigne la touche Q ou q
+        plateau = fusion_g(plateau) #appel la fonction fusion_g pour deplacer les lignes vers la gauche
+    elif deplacement == "s"  or deplacement == "S":    #assigne la touche S ou s
+        plateau = fusionbas(plateau) #appel la fonction fusionbas pour deplacer les lignes vers le bas
     else:
-        validInput = False
+        validInput = False #ne valide pas input si la touche ne correspond pas aux bonnes touches
     
     if not validInput:
-        print("Veuillez reessayer l'entrée n'est pas valide")
+        print("Entrée NON-Valide")  #renvoi Entree NON Valide car la touche inserer ne correspond pas au touche valide
     else:
         if plateau == temp_plateau:
-            print("Essayez une direction differente !")
+            print(affichage())
         else:
-            if gagne():
-                affichage()
-                print("Vous avez gagné")
-                fin_du_jeu = True
-            else:
-                ajout_nouvelle_valeur()
+            if gagne():                                 #
+                affichage()                            #
+                print("Vous avez gagné")      #arrete le jeu car le joueur a atteint 2048 dans une case
+                fin_du_jeu = True               #
+            else:                                        #
+                ajout_nouvelle_valeur()        #sinon ajouter une nouvelle valeur
                             
                 affichage()
-                
-                if plus_mouvements():
-                    print("Plus de mouvement possible, vous avez perdu !")
-                    fin_du_jeu = True
+                                        
+                if plus_fusions_possible():                                                #
+                    print("Plus de fusion possible, vous avez PERDU !")     #arrete le jeu car il n'y a plus de fusion possible
+                    fin_du_jeu = True                                                        #
+                    
 
 affichage()
